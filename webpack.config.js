@@ -11,7 +11,7 @@ module.exports = {
     devServer: {
       // contentBase: path.join(__dirname, 'client'),
       port: 8080,
-      publicPath: '/build/',
+      publicPath: '/build',
       proxy: {
         '/api': 'http://localhost:3000'
       },
@@ -26,7 +26,9 @@ module.exports = {
             use: {
               loader: 'babel-loader',
               options: {
-                presets: ['@babel/preset-env', '@babel/preset-react']
+                presets: ['@babel/preset-env',
+                          '@babel/react',{
+                          'plugins': ['@babel/plugin-proposal-class-properties']}]
               }
             }
           },
@@ -51,6 +53,6 @@ module.exports = {
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         title: 'test',
-      })
+      }),
     ],
 };
